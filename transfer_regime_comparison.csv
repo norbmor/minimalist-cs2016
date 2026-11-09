@@ -1,0 +1,14 @@
+derivation,pf_plug_back_in,pf_sec12_occurrence,pf_sec12_object,ntc_at_transfer_plug_back_in,ntc_at_transfer_sec12
+john_fell,John fell,John fell,John fell,False,True
+john_sees_chris,John see Chris,John see Chris,John see Chris,False,True
+crashing,John see Chris,John see Chris,John see Chris,False,True
+remnant_movement,how likely to win John is,how likely to win John is,how likely to win John is,False,True
+remnant_across_phases,how likely John to win you think that John is,how likely to win you think that John is,(not derivable),False,True
+successive_cyclic_wh,who you think John will see,who you think John will see,(not derivable),False,True
+john_seems_to_win,John seem to win,John seem to win,John seem to win,False,True
+you_wonder_who_john_will_see,you wonder who John will see,you wonder who John will see,(not derivable),False,True
+john_gives_mary_flowers,John Mary give flowers,John Mary give flowers,John Mary give flowers,False,True
+mary_praises_john,Mary praise John,Mary praise John,Mary praise John,False,True
+mary_not_praise_john,Mary not praise John,Mary not praise John,Mary not praise John,False,True
+sue_thinks_john_fell,Sue think John fell,Sue think John fell,Sue think John fell,False,True
+who_does_sue_think_fell,who Sue think fell,who Sue think fell,(not derivable),False,True

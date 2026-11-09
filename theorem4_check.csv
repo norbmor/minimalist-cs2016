@@ -1,0 +1,11 @@
+locality_D14c,max_size,token_classes,chain_objects,token_classes_with_no_chain_image,token_classes_with_several_chain_images,chain_objects_without_preimage,bijection
+True,1,3,3,0,0,0,True
+True,2,7,7,0,0,0,True
+True,3,25,23,2,0,0,False
+True,4,123,95,28,0,0,False
+True,5,703,437,272,6,0,False
+False,1,3,3,0,0,0,True
+False,2,7,7,0,0,0,True
+False,3,25,27,0,2,0,False
+False,4,123,155,0,24,0,False
+False,5,703,1097,0,224,0,False

@@ -1,0 +1,6 @@
+rule,derivations,complete_objects,stages,distinct_pf_strings,T5,T6,T8,T9
+D27 Triggered Merge,6267280,648,4072,6,True,True,True,True
++ selection (ranked triggers),55968,12,280,6,True,True,True,True
+"+ selection (ranked), EPP needs D",27984,6,178,4,True,True,True,True
++ selection (unranked triggers),171424,24,448,6,True,True,True,True
+"+ selection (unranked), EPP needs D",85712,12,304,4,True,True,True,True

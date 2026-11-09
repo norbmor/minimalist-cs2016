@@ -1,0 +1,481 @@
+==========================================================================
+(6)/(8) external Merge, untriggered (D13)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           John1
+     W = {John1}
+  2. Select           see1
+     W = {John1, see1}
+  3. Merge            external Merge: see1 + John1
+     W = {{see1, John1}}
+  4. Select           John2
+     W = {John2, {see1, John1}}
+  5. Merge            external Merge: {see1, John1} + John2
+     W = {{John2, {see1, John1}}}
+
+  structure : {John2, {see1, John1}}   (unlabelled: D13)
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        ok
+
+==========================================================================
+(7) internal Merge, untriggered (D13)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           John1
+     W = {John1}
+  2. Select           see1
+     W = {John1, see1}
+  3. Merge            external Merge: see1 + John1
+     W = {{see1, John1}}
+  4. Merge            internal Merge: {see1, John1} + John1
+     W = {{John1, {see1, John1}}}
+
+  structure : {John1, {see1, John1}}   (unlabelled: D13)
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        ok
+
+==========================================================================
+(15) two trigger features (D26, D27)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           John1
+     W = {John1}
+  2. Select           see_2TF2
+     W = {John1, see_2TF2}
+  3. Merge            external Merge: see_2TF2 + John1
+     W = {{see_2TF2, John1}}
+  4. Merge            internal Merge: {see_2TF2, John1} + John1
+     W = {{{see_2TF2, John1}, John1}}
+
+  structure : [VP John1 [V' see_2TF2 <John1>]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        ok
+
+==========================================================================
+(16)/(17) [VP see Chris]
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           see1
+     W = {see1}
+  2. Select           Chris2
+     W = {Chris2, see1}
+  3. Merge            external Merge: see1 + Chris2
+     W = {{see1, Chris2}}
+
+  structure : [VP see1 Chris2]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        ok
+
+==========================================================================
+(18) John fell
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           fall1
+     W = {fall1}
+  2. Select           John2
+     W = {John2, fall1}
+  3. Merge            external Merge: fall1 + John2
+     W = {{fall1, John2}}
+  4. Select           T_V3
+     W = {T_V3, {fall1, John2}}
+  5. Merge            external Merge: T_V3 + {fall1, John2}
+     W = {{T_V3, {fall1, John2}}}
+  6. Merge            internal Merge: {T_V3, {fall1, John2}} + John2
+     W = {{{T_V3, {fall1, John2}}, John2}}
+  7. Select           Comp4
+     W = {Comp4, {{T_V3, {fall1, John2}}, John2}}
+  8. Merge            external Merge: Comp4 + {{T_V3, {fall1, John2}}, John2}
+     W = {{Comp4, {{T_V3, {fall1, John2}}, John2}}}
+  9. Transfer         <John-fell, {0_4, {JOHN_2, {0_3, {FALL_1, JOHN_2}}}}>
+     W = {<John-fell, {0_4, {JOHN_2, {0_3, {FALL_1, JOHN_2}}}}>}
+
+  structure : [CP Comp4 [TP John2 [T' T_V3 [VP fall1 <John2>]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : John fell
+  LF        : {0_4, {JOHN_2, {0_3, {FALL_1, JOHN_2}}}}
+  CI (D42)  : converges
+  SM (D43)  : converges
+
+==========================================================================
+John sees Chris (v* phase, T14)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           see1
+     W = {see1}
+  2. Select           Chris2
+     W = {Chris2, see1}
+  3. Merge            external Merge: see1 + Chris2
+     W = {{see1, Chris2}}
+  4. Select           v*3
+     W = {v*3, {see1, Chris2}}
+  5. Merge            external Merge: v*3 + {see1, Chris2}
+     W = {{v*3, {see1, Chris2}}}
+  6. Select           John4
+     W = {John4, {v*3, {see1, Chris2}}}
+  7. Merge            external Merge: {v*3, {see1, Chris2}} + John4
+     W = {{{v*3, {see1, Chris2}}, John4}}
+  8. Cyclic-Transfer  {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}
+     W = {{{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}
+  9. Select           T5
+     W = {T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}
+ 10. Merge            external Merge: T5 + {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}
+     W = {{T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}}
+ 11. Merge            internal Merge: {T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}} + John4
+     W = {{{T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}, John4}}
+ 12. Select           Comp6
+     W = {Comp6, {{T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}, John4}}
+ 13. Merge            external Merge: Comp6 + {{T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}, John4}
+     W = {{Comp6, {{T5, {{v*3, <see-Chris, {CHRIS_2, SEE_1}>}, John4}}, John4}}}
+ 14. Transfer         <John-see-Chris, {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS_2, SEE_1}}}}}}>
+     W = {<John-see-Chris, {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS_2, SEE_1}}}}}}>}
+
+  structure : [CP Comp6 [TP John4 [T' T5 [vP <John4> [v' v*3 <see-Chris, {CHRIS_2, SEE_1}>]]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : John see Chris
+  LF        : {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS_2, SEE_1}}}}}}
+  CI (D42)  : converges
+  SM (D43)  : converges
+
+==========================================================================
+(19)/(20) How likely to win is John?
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           win2
+     W = {win2}
+  2. Select           to3
+     W = {to3, win2}
+  3. Merge            external Merge: to3 + win2
+     W = {{to3, win2}}
+  4. Select           John1
+     W = {John1, {to3, win2}}
+  5. Merge            external Merge: {to3, win2} + John1
+     W = {{{to3, win2}, John1}}
+  6. Select           likely4
+     W = {likely4, {{to3, win2}, John1}}
+  7. Merge            external Merge: likely4 + {{to3, win2}, John1}
+     W = {{likely4, {{to3, win2}, John1}}}
+  8. Select           how5
+     W = {how5, {likely4, {{to3, win2}, John1}}}
+  9. Merge            external Merge: how5 + {likely4, {{to3, win2}, John1}}
+     W = {{how5, {likely4, {{to3, win2}, John1}}}}
+ 10. Select           is6
+     W = {is6, {how5, {likely4, {{to3, win2}, John1}}}}
+ 11. Merge            external Merge: is6 + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{is6, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 12. Merge            internal Merge: {is6, {how5, {likely4, {{to3, win2}, John1}}}} + John1
+     W = {{{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}
+ 13. Select           Comp_Q7
+     W = {Comp_Q7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}
+ 14. Merge            external Merge: Comp_Q7 + {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}
+     W = {{Comp_Q7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}}
+ 15. Merge            internal Merge: {Comp_Q7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}} + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{{Comp_Q7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 16. Transfer         <how-likely-to-win-John-is, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}>
+     W = {<how-likely-to-win-John-is, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}>}
+
+  structure : [CP [DegP how5 [AP likely4 [TP <John1> [T' to3 win2]]]] [C' Comp_Q7 [TP John1 [T' is6 <[DegP how5 [AP likely4 [TP <John1> [T' to3 win2]]]]>]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : how likely to win John is
+  LF        : {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}
+  CI (D42)  : converges
+  SM (D43)  : converges
+
+==========================================================================
+(21) remnant movement across two phases (plug-back-in)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           win2
+     W = {win2}
+  2. Select           to3
+     W = {to3, win2}
+  3. Merge            external Merge: to3 + win2
+     W = {{to3, win2}}
+  4. Select           John1
+     W = {John1, {to3, win2}}
+  5. Merge            external Merge: {to3, win2} + John1
+     W = {{{to3, win2}, John1}}
+  6. Select           likely4
+     W = {likely4, {{to3, win2}, John1}}
+  7. Merge            external Merge: likely4 + {{to3, win2}, John1}
+     W = {{likely4, {{to3, win2}, John1}}}
+  8. Select           how5
+     W = {how5, {likely4, {{to3, win2}, John1}}}
+  9. Merge            external Merge: how5 + {likely4, {{to3, win2}, John1}}
+     W = {{how5, {likely4, {{to3, win2}, John1}}}}
+ 10. Select           is6
+     W = {is6, {how5, {likely4, {{to3, win2}, John1}}}}
+ 11. Merge            external Merge: is6 + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{is6, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 12. Merge            internal Merge: {is6, {how5, {likely4, {{to3, win2}, John1}}}} + John1
+     W = {{{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}
+ 13. Select           that7
+     W = {that7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}
+ 14. Merge            external Merge: that7 + {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}
+     W = {{that7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}}
+ 15. Merge            internal Merge: {that7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}} + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{{that7, {{is6, {how5, {likely4, {{to3, win2}, John1}}}}, John1}}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 16. Cyclic-Transfer  {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}
+     W = {{{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 17. Select           think8
+     W = {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 18. Merge            external Merge: think8 + {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}
+     W = {{think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}
+ 19. Select           v*_edge9
+     W = {v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}
+ 20. Merge            external Merge: v*_edge9 + {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}
+     W = {{v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}}
+ 21. Select           you10
+     W = {you10, {v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}}
+ 22. Merge            external Merge: {v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}} + you10
+     W = {{{v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}, you10}}
+ 23. Merge            internal Merge: {{v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}, you10} + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{{{v*_edge9, {think8, {{that7, <John-is, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}>}, {how5, {likely4, {{to3, win2}, John1}}}}}}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 24. Cyclic-Transfer  {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}
+     W = {{{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 25. Select           T11
+     W = {T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 26. Merge            external Merge: T11 + {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}
+     W = {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}}
+ 27. Merge            internal Merge: {T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}} + you10
+     W = {{{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}}
+ 28. Select           Comp_Q12
+     W = {Comp_Q12, {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}}
+ 29. Merge            external Merge: Comp_Q12 + {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}
+     W = {{Comp_Q12, {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}}}
+ 30. Merge            internal Merge: {Comp_Q12, {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}} + {how5, {likely4, {{to3, win2}, John1}}}
+     W = {{{Comp_Q12, {{T11, {{{v*_edge9, <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>}, you10}, {how5, {likely4, {{to3, win2}, John1}}}}}, you10}}, {how5, {likely4, {{to3, win2}, John1}}}}}
+ 31. Transfer         <how-likely-John-to-win-you-think-that-John-is, {{0_12, {YOU_10, {0_11, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {YOU_10, {0_9, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}}}}}}}, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}>
+     W = {<how-likely-John-to-win-you-think-that-John-is, {{0_12, {YOU_10, {0_11, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {YOU_10, {0_9, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}}}}}}}, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}>}
+
+  structure : [CP [DegP how5 [AP likely4 [TP John1 [T' to3 win2]]]] [C' Comp_Q12 [TP you10 [T' T11 [vP <[DegP how5 [AP likely4 [TP John1 [T' to3 win2]]]]> [v' <you10> [v' v*_edge9 <think-that-John-is, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}>]]]]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : how likely John to win you think that John is
+  LF        : {{0_12, {YOU_10, {0_11, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {YOU_10, {0_9, {THINK_8, {{0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}, {0_7, {JOHN_1, {0_6, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}}}}}}}}}}}, {0_5, {0_4, {JOHN_1, {0_3, WIN_2}}}}}
+  CI (D42)  : converges
+  SM (D43)  : converges
+
+==========================================================================
+Who do you think John will see (successive cyclicity)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           see5
+     W = {see5}
+  2. Select           who1
+     W = {see5, who1}
+  3. Merge            external Merge: see5 + who1
+     W = {{see5, who1}}
+  4. Select           v*_edge11
+     W = {v*_edge11, {see5, who1}}
+  5. Merge            external Merge: v*_edge11 + {see5, who1}
+     W = {{v*_edge11, {see5, who1}}}
+  6. Select           John3
+     W = {John3, {v*_edge11, {see5, who1}}}
+  7. Merge            external Merge: {v*_edge11, {see5, who1}} + John3
+     W = {{{v*_edge11, {see5, who1}}, John3}}
+  8. Merge            internal Merge: {{v*_edge11, {see5, who1}}, John3} + who1
+     W = {{{{v*_edge11, {see5, who1}}, John3}, who1}}
+  9. Cyclic-Transfer  {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}
+     W = {{{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}
+ 10. Select           will4
+     W = {will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}
+ 11. Merge            external Merge: will4 + {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}
+     W = {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}}
+ 12. Merge            internal Merge: {will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}} + John3
+     W = {{{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}}
+ 13. Select           Comp_Q2
+     W = {Comp_Q2, {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}}
+ 14. Merge            external Merge: Comp_Q2 + {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}
+     W = {{Comp_Q2, {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}}}
+ 15. Merge            internal Merge: {Comp_Q2, {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}} + who1
+     W = {{{Comp_Q2, {{will4, {{{v*_edge11, <see, {SEE_5, WHO_1}>}, John3}, who1}}, John3}}, who1}}
+ 16. Cyclic-Transfer  {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}
+     W = {{{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}
+ 17. Select           think6
+     W = {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}
+ 18. Merge            external Merge: think6 + {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}
+     W = {{think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}
+ 19. Select           v*_edge7
+     W = {v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}
+ 20. Merge            external Merge: v*_edge7 + {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}
+     W = {{v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}}
+ 21. Select           you8
+     W = {you8, {v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}}
+ 22. Merge            external Merge: {v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}} + you8
+     W = {{{v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}, you8}}
+ 23. Merge            internal Merge: {{v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}, you8} + who1
+     W = {{{{v*_edge7, {think6, {{Comp_Q2, <John-will-see, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}>}, who1}}}, you8}, who1}}
+ 24. Cyclic-Transfer  {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}
+     W = {{{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}
+ 25. Select           T9
+     W = {T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}
+ 26. Merge            external Merge: T9 + {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}
+     W = {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}}
+ 27. Merge            internal Merge: {T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}} + you8
+     W = {{{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}}
+ 28. Select           Comp_Q10
+     W = {Comp_Q10, {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}}
+ 29. Merge            external Merge: Comp_Q10 + {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}
+     W = {{Comp_Q10, {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}}}
+ 30. Merge            internal Merge: {Comp_Q10, {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}} + who1
+     W = {{{Comp_Q10, {{T9, {{{v*_edge7, <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>}, you8}, who1}}, you8}}, who1}}
+ 31. Transfer         <who-you-think-John-will-see, {WHO_1, {0_10, {YOU_8, {0_9, {WHO_1, {YOU_8, {0_7, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}}}}}}}}>
+     W = {<who-you-think-John-will-see, {WHO_1, {0_10, {YOU_8, {0_9, {WHO_1, {YOU_8, {0_7, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}}}}}}}}>}
+
+  structure : [CP who1 [C' Comp_Q10 [TP you8 [T' T9 [vP <who1> [v' <you8> [v' v*_edge7 <think-John-will-see, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}>]]]]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : who you think John will see
+  LF        : {WHO_1, {0_10, {YOU_8, {0_9, {WHO_1, {YOU_8, {0_7, {THINK_6, {WHO_1, {0_2, {JOHN_3, {0_4, {WHO_1, {JOHN_3, {0_11, {SEE_5, WHO_1}}}}}}}}}}}}}}}}
+  CI (D42)  : converges
+  SM (D43)  : converges
+
+==========================================================================
+crashing derivation (D42)
+==========================================================================
+  0. init             <LA, {}>
+     W = {}
+  1. Select           see1
+     W = {see1}
+  2. Select           Chris_uCase2
+     W = {Chris_uCase2, see1}
+  3. Merge            external Merge: see1 + Chris_uCase2
+     W = {{see1, Chris_uCase2}}
+  4. Select           v*3
+     W = {v*3, {see1, Chris_uCase2}}
+  5. Merge            external Merge: v*3 + {see1, Chris_uCase2}
+     W = {{v*3, {see1, Chris_uCase2}}}
+  6. Select           John4
+     W = {John4, {v*3, {see1, Chris_uCase2}}}
+  7. Merge            external Merge: {v*3, {see1, Chris_uCase2}} + John4
+     W = {{{v*3, {see1, Chris_uCase2}}, John4}}
+  8. Cyclic-Transfer  {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}
+     W = {{{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}
+  9. Select           T5
+     W = {T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}
+ 10. Merge            external Merge: T5 + {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}
+     W = {{T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}}
+ 11. Merge            internal Merge: {T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}} + John4
+     W = {{{T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}, John4}}
+ 12. Select           Comp6
+     W = {Comp6, {{T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}, John4}}
+ 13. Merge            external Merge: Comp6 + {{T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}, John4}
+     W = {{Comp6, {{T5, {{v*3, <see-Chris, {CHRIS,uCase_2, SEE_1}>}, John4}}, John4}}}
+ 14. Transfer         <John-see-Chris, {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS,uCase_2, SEE_1}}}}}}>
+     W = {<John-see-Chris, {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS,uCase_2, SEE_1}}}}}}>}
+
+  structure : [CP Comp6 [TP John4 [T' T5 [vP <John4> [v' v*3 <see-Chris, {CHRIS,uCase_2, SEE_1}>]]]]]
+  D14/D38 derivation                       ok
+  D15 LA_n = {} and W_n = {A}              ok
+  T5 binary branching                      ok
+  T6 unique root occurrences               ok
+  T7 two occurrences iff internal Merge    ok
+  T8 No Tampering (Select/Merge)           ok
+  T9 Extension (at every Merge)            ok
+  T10 Inclusiveness                        ok
+  T8 No Tampering at Transfer steps        FAILS
+  PF        : John see Chris
+  LF        : {0_6, {JOHN_4, {0_5, {JOHN_4, {0_3, {CHRIS,uCase_2, SEE_1}}}}}}
+  CI (D42)  : CRASH
+  SM (D43)  : converges
+
+==========================================================================
+(16)/(17) TransferLF and TransferPF of [VP see Chris], Phase = v*P
+==========================================================================
+  TransferLF(vP, see1)  = SEE_1
+  TransferLF(vP, Chris2) = CHRIS_2
+  TransferLF(vP, VP)    = {CHRIS_2, SEE_1}
+  TransferPF(vP, VP)    = see Chris
+
+==========================================================================
+Theorem 14 (Phase Impenetrability Condition)
+==========================================================================
+  before Cyclic-Transfer: Chris2 is contained in v*P -> True
+  after  Cyclic-Transfer: Chris2 is contained in v*P -> False
+  The complement is now <TransferPF, TransferLF>, which is not a
+  syntactic object (D37), so Merge cannot reach into it.
+
+==========================================================================
+Section 11/12: remnant movement under the two models of Transfer
+==========================================================================
+  (19)/(20) one phase
+    plug-back-in (D36-D38) : how likely to win John is
+    section 12 (PF, LF maps): how likely to win John is
+  (21) two phases
+    plug-back-in (D36-D38) : how likely John to win you think that John is
+    section 12 (PF, LF maps): how likely to win you think that John is
