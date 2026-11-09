@@ -117,7 +117,7 @@ structure and the same path (`theorem4_check.csv`):
   says so: "the question … never arises").  So one token object gets
   several Chain objects.
 
-Under every reading of (c) we could construct, the natural correspondence
+Under both readings of (c) we tested, the natural correspondence
 fails from size 3 on.  We cannot rule out that the unpublished proof uses a
 different correspondence, but it would have to be one that ignores the
 paths.

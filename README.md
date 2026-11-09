@@ -119,8 +119,8 @@ The paper leaves these open; the code marks each `# STIPULATION`.
   John is`.
 * **Cyclic-Transfer violates the NTC** (T8 fails at every Transfer step)
   under plug-back-in, and respects it under §12.
-* **Theorem 4 fails on bounded fragments** under every reading of D14′(c) we
-  could construct, from three Merge nodes on (`theorem4_check.csv`).
+* **Theorem 4 fails on bounded fragments** under both readings of D14′(c) we
+  tested, from three Merge nodes on (`theorem4_check.csv`).
 * **Selection** cuts 6,267,280 derivations over 648 objects to 55,968 over
   12, and T5/T6/T8/T9 hold throughout.  With unranked triggers, as 2016
   assumes, it admits 24 objects, including the `[TP vP [T′ T DP]]` that §7
