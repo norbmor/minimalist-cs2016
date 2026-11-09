@@ -84,8 +84,8 @@ think that John is}, and that derivation still converges. An implementation
 of the paper's Section~12 alternative pronounces it correctly. We also report
 three results the paper does not state. Theorem~4, the correspondence between
 token-based and Chain-based objects, fails on exhaustively enumerated
-fragments from three Merge nodes on, under every reading of its misprinted
-locality condition. The Section~12 sketch works under one reading of ``$W$
+fragments from three Merge nodes on, under both readings of its misprinted
+locality condition that we tested. The Section~12 sketch works under one reading of ``$W$
 minus those already transferred'' and makes successive-cyclic movement
 underivable under the other. And with the unordered trigger features the
 paper assumes, adding selection to Triggered Merge still admits the
@@ -753,7 +753,8 @@ same driver by replacing \Def{35} or \Def{36}.
 
 Implemented as written, the C\&S definitions derive all of the paper's
 examples, and Theorems \Thm{5}--\Thm{10} hold on every reachable stage we
-checked. The implementation reproduces the paper's argument against the
+checked (\Thm{8} at Select and Merge steps; under the plug-back-in model it
+fails at Cyclic-Transfer, as C\&S note). The implementation reproduces the paper's argument against the
 plug-back-in model and shows in addition that the mispronounced derivation
 of (21) converges. The problems we found are in parts that C\&S present as
 sketches or whose proofs were not published. The Section~12 alternative
